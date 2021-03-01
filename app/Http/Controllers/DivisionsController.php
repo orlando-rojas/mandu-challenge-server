@@ -31,6 +31,7 @@ class DivisionsController extends Controller
             if (!$valid) {
                 return response()->json(['message' => "Invalid parent division"], 404);
             }
+            $this->update_sub_divisions($request->parent_division);
         }
         $division = Divisions::create($request->all());
         return response($division, 201);
@@ -43,6 +44,7 @@ class DivisionsController extends Controller
             if (!$valid) {
                 return response()->json(['message' => "Invalid parent division"], 404);
             }
+            $this->update_sub_divisions($request->parent_division);
         }
         $division = Divisions::find($id);
         if (is_null($division)) {
@@ -81,5 +83,12 @@ class DivisionsController extends Controller
             return false;
         }
         return true;
+    }
+
+    public function update_sub_divisions($name)
+    {
+        $p_division = Divisions::where("name", $name)->first();
+        $p_division->sub_divisions += 1;
+        $p_division->save();
     }
 }
