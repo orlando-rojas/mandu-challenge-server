@@ -25,5 +25,4 @@ Route::group(['middleware' => ['cors']], function () {
     Route::delete("divisions/{id}", [DivisionsController::class, "destroy"]);
 
     Route::get("divisions/{id}/subdivisions", [DivisionsController::class, "get_subdivisions"]);
-    Route::get("divisions/{id}/subdivisionsCount", [DivisionsController::class, "get_subdivisions_count"]);
 });
