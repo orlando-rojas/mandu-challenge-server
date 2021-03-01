@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DivisionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get("divisions", [DivisionsController::class, "index"]);
+Route::post("divisions", [DivisionsController::class, "store"]);
+
+Route::get("divisions/{id}", [DivisionsController::class, "show"]);
+Route::put("divisions/{id}", [DivisionsController::class, "update"]);
+Route::delete("divisions/{id}", [DivisionsController::class, "destroy"]);
+
+Route::get("divisions/{id}/subdivisions", [DivisionsController::class, "get_subdivisions"]);
+Route::get("divisions/{id}/subdivisionsCount", [DivisionsController::class, "get_subdivisions_count"]);
