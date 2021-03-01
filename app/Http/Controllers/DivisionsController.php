@@ -15,7 +15,6 @@ class DivisionsController extends Controller
         return response()->json($divisions->items());
     }
 
-
     public function show($id)
     {
         $division = Divisions::find($id);
@@ -31,7 +30,6 @@ class DivisionsController extends Controller
         return response($division, 201);
     }
 
-
     public function update(Request $request, $id)
     {
         $division = Divisions::find($id);
@@ -41,7 +39,6 @@ class DivisionsController extends Controller
         $division->update($request->all());
         return response($division, 200);
     }
-
 
     public function destroy(Request $request, $id)
     {
