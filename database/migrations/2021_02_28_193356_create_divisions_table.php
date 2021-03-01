@@ -20,7 +20,7 @@ class CreateDivisionsTable extends Migration
             $table->integer("level");
             $table->integer("collaborators_amount");
             $table->string("parent_division")->nullable();
-            $table->integer("sub_divissions")->default(0);
+            $table->integer("sub_divisions")->default(0)->nullable();
             $table->string("ambassador")->nullable();
         });
     }

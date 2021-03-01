@@ -26,6 +26,10 @@ class DivisionsController extends Controller
 
     public function store(Request $request)
     {
+        $parentd = $request->parent_division;
+        if (is_null(Divisions::where("name", $parentd)->first())) {
+            return response()->json(['message' => "Invalid parent division"], 404);
+        }
         $division = Divisions::create($request->all());
         return response($division, 201);
     }
