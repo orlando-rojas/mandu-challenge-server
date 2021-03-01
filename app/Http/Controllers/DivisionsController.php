@@ -31,9 +31,11 @@ class DivisionsController extends Controller
             if (!$valid) {
                 return response()->json(['message' => "Invalid parent division"], 404);
             }
-            $this->update_sub_divisions($request->parent_division);
         }
         $division = Divisions::create($request->all());
+        if (!is_null($request->parent_division)) {
+            $this->update_sub_divisions($request->parent_division);
+        }
         return response($division, 201);
     }
 
