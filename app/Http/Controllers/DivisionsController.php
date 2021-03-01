@@ -26,8 +26,8 @@ class DivisionsController extends Controller
 
     public function store(Request $request)
     {
-        $parentd = $request->parent_division;
-        if (is_null(Divisions::where("name", $parentd)->first())) {
+        $valid = $this->validate_parent_division($request);
+        if (!$valid) {
             return response()->json(['message' => "Invalid parent division"], 404);
         }
         $division = Divisions::create($request->all());
@@ -64,5 +64,14 @@ class DivisionsController extends Controller
     {
         $sub_divisions_amount = Divisions::find($id)->sub_divisions_amount();
         return $sub_divisions_amount;
+    }
+
+    public function validate_parent_division($req)
+    {
+        $parentd = $req->parent_division;
+        if (is_null(Divisions::where("name", $parentd)->first())) {
+            return false;
+        }
+        return true;
     }
 }
