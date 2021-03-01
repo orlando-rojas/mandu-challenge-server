@@ -22,6 +22,10 @@ class Divisions extends Model
 
     public function sub_divisions_amount()
     {
+        $sub_divisions = $this->sub_divisions();
+        if (is_null($sub_divisions)) {
+            return 0;
+        }
         return count($this->sub_divisions());
     }
 }
