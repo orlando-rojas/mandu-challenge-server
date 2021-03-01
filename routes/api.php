@@ -15,12 +15,15 @@ use App\Http\Controllers\DivisionsController;
 |
 */
 
-Route::get("divisions", [DivisionsController::class, "index"]);
-Route::post("divisions", [DivisionsController::class, "store"]);
+Route::group(['middleware' => ['cors']], function () {
 
-Route::get("divisions/{id}", [DivisionsController::class, "show"]);
-Route::put("divisions/{id}", [DivisionsController::class, "update"]);
-Route::delete("divisions/{id}", [DivisionsController::class, "destroy"]);
+    Route::get("divisions", [DivisionsController::class, "index"]);
+    Route::post("divisions", [DivisionsController::class, "store"]);
 
-Route::get("divisions/{id}/subdivisions", [DivisionsController::class, "get_subdivisions"]);
-Route::get("divisions/{id}/subdivisionsCount", [DivisionsController::class, "get_subdivisions_count"]);
+    Route::get("divisions/{id}", [DivisionsController::class, "show"]);
+    Route::put("divisions/{id}", [DivisionsController::class, "update"]);
+    Route::delete("divisions/{id}", [DivisionsController::class, "destroy"]);
+
+    Route::get("divisions/{id}/subdivisions", [DivisionsController::class, "get_subdivisions"]);
+    Route::get("divisions/{id}/subdivisionsCount", [DivisionsController::class, "get_subdivisions_count"]);
+});
