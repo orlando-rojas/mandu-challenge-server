@@ -88,7 +88,7 @@ class DivisionsController extends Controller
     public function update_sub_divisions($name)
     {
         $p_division = Divisions::where("name", $name)->first();
-        $p_division->sub_divisions += 1;
+        $p_division->sub_divisions = $p_division->sub_divisions_amount();
         $p_division->save();
     }
 }
