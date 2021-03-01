@@ -10,9 +10,9 @@ class DivisionsController extends Controller
 
     public function index()
     {
-        $divisions = Divisions::paginate(3);
+        $divisions = Divisions::all();
 
-        return response()->json($divisions->items());
+        return response()->json($divisions);
     }
 
     public function show($id)
